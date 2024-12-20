@@ -1,50 +1,21 @@
-# React + TypeScript + Vite
+版本
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- node 18.16.0
+- 版本控制 pnpm
 
-Currently, two official plugins are available:
+.prettier 用于：控制代码风格和输出的格式
+.prettier文件属性：
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- useTabs: 使用空格而非制表符来缩进(boolean)
+- tabWidth: 每次缩进使用 2 个空格 (number)
+- printWidth: 限制每行代码的最大字符数为(number)
+- singleQuote: 使用单引号包裹字符串，而不是双引号(boolean)
+- trailingComma: 控制是否在多行对象、数组、函数参数等结构的最后一项后添加一个逗号。(none表示不会在多行元素后加逗号)
+- semi: 语句末尾不添加分号。(boolean)
 
-## Expanding the ESLint configuration
+命令行：pnpm run prettier 用于执行.prettierrc 以达到全部文件都按照prettierrc的规范来
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+.prettierignore，这个文件用来，忽略文件的，当在执行prettire时，可以针对哪些文件不要执行prettier的规范
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+命令行: pnpm run lint 用于执行eslint的规范的，不满足规范都会报错  
+命令行: pnpm run lint --fix 这个命令则会修复关于prettier格式的问题
