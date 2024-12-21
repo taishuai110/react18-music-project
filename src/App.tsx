@@ -1,26 +1,31 @@
-import { useRoutes } from 'react-router-dom'
+import { Suspense } from 'react'
+import { useRoutes, Link } from 'react-router-dom'
 import routes from './router'
 
-/* 
-  函数式组件，可以选props形参, 表示该组件需要传递的参数  
-  还可以对函数直接声明React.FC类型表示该函数是一个React函数组件 例如 function App(): React.Fc<类型A>(props: 类型A) {}
-*/
+import Loading from '@/components/loading'
+
 function App() {
   return (
     <div className="App">
-      {
-        // 初始化router
-        useRoutes(routes)
-      }
+      <div className="nav">
+        <Link to="/discover">发现音乐</Link>
+        <Link to="/mine">我的音乐</Link>
+        <Link to="/focus">关注</Link>
+        <Link to="/download">下载客户端</Link>
+      </div>
+
+      {/* Suspense 主要用作处理路由实现懒加载后 页面还没加载时的要展示的内容 */}
+      <Suspense fallback={<Loading />}>
+        <div className="main">
+          {
+            // 初始化router
+            useRoutes(routes)
+          }
+        </div>
+      </Suspense>
     </div>
   )
 }
 
-/* 
-  设置组件传递参数的默认值
-  App.defaultProps = {
-    name: "wwww"
-  }
-*/
 
 export default App

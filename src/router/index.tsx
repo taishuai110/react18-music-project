@@ -1,8 +1,13 @@
 import { type RouteObject, Navigate } from 'react-router-dom'
-import Discover from '@/views/discover'
-import Mine from '@/views/mine'
-import Focus from '@/views/focus'
-import Download from '@/views/download'
+import { lazy } from 'react'
+
+import DiscoverChild from './discover'
+
+// 动态路由的目的，1是优化页面，2是做权限控制
+const Discover = lazy(() => import('@/views/discover'))
+const Mine = lazy(() => import('@/views/mine'))
+const Focus = lazy(() => import('@/views/focus'))
+const Download = lazy(() => import('@/views/download'))
 
 const routers: RouteObject[] = [
   {
@@ -12,11 +17,19 @@ const routers: RouteObject[] = [
   },
   {
     path: '/discover',
-    element: <Discover />
+    element: <Discover />,
+    children: [
+      {
+        path: '/discover',
+        element: <Navigate to="/discover/recommend" />
+      },
+      // 解构出来的是一个数组，所以直接展开
+      ...DiscoverChild
+    ],
   },
   {
     path: '/mine',
-    element: <Mine />
+    element: <Mine />,
   },
   {
     path: '/focus',
