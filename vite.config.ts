@@ -40,7 +40,9 @@ export default ({ mode }: { mode: string }) => {
       proxy: {
         '/api': {
           target: `${env.VITE_API_URL}:${env.VITE_API_PORT}`,
-          changeOrigin: true
+          changeOrigin: true,
+          // 重写/api路径
+          rewrite: (path) => path.replace(/^\/api/, '')
         }
       }
     }
