@@ -20,7 +20,7 @@ const Discover: FC<IProps> = () => {
         <Link to="/discover/album">新碟上架</Link>
       </div>
       {/* 给二级路由占位 这里使用Suspense是因为在切换二级路由的时候，不需要重新加载上面DOM，只需要重新加载二级路由的内容 */}
-      <Suspense fallback={ <Loading /> }>
+      <Suspense fallback={<Loading />}>
         <Outlet></Outlet>
       </Suspense>
     </div>

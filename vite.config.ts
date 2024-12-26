@@ -2,6 +2,7 @@ import { defineConfig, loadEnv } from 'vite'
 import react from '@vitejs/plugin-react-swc'
 import { resolve } from 'path'
 import tailwindcss from 'tailwindcss'
+import eslint from 'vite-plugin-eslint'
 
 // https://vite.dev/config/
 export default ({ mode }: { mode: string }) => {
@@ -17,7 +18,15 @@ export default ({ mode }: { mode: string }) => {
     // env存在的文件夹
     envDir: './env',
 
-    plugins: [react()],
+    plugins: [
+      react(),
+      // build时对代码进行eslint检查
+      eslint({
+        include: ['src/**/*.tsx', 'src/**/*.ts'],
+        exclude: ['node_modules/**', 'public/**'],
+        fix: true
+      })
+    ],
 
     resolve: {
       alias: {
