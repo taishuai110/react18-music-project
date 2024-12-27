@@ -1,5 +1,7 @@
 import { memo } from 'react'
 import { NavLink } from 'react-router-dom'
+import { Input } from 'antd'
+import { SearchOutlined } from '@ant-design/icons'
 
 import headerTitles from '@/assets/data/header-titles.json'
 import { HeaderLeft } from './style'
@@ -45,7 +47,19 @@ const Header = () => {
           </div>
         </HeaderLeft>
 
-        <div className="header-right">right</div>
+        <div className="header-right flex items-center text=[#787878] text-xs">
+          <span className="input">
+            <Input
+              className="search w-[158px] h-8 rounded-2xl placeholder-sm"
+              placeholder="音乐/视频/电台/用户"
+              prefix={<SearchOutlined />}
+            />
+          </span>
+          <span className="center w-[90px] h-8 leading-8 text-[#ddd] hover:text-[#fff] hover:border-[#fff] text-center border border-gray-600 rounded-2xl mx-4 cursor-pointer">
+            创作者中心
+          </span>
+          <span className="login">登录</span>
+        </div>
       </div>
       <div className="divider h-[5px] bg-[#c20c0c]"></div>
     </div>
